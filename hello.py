@@ -2,6 +2,7 @@ from flask import Flask
 from markupsafe import escape
 from flask import url_for
 from flask import request
+from flask import render_template
 
 app = Flask(__name__)
 
@@ -33,4 +34,8 @@ def login():
         return do_the_login()
     else:
         return show_the_login_form()
+    
+@app.route('/index')
+def inde():
+    return render_template('index.html')
     
