@@ -13,3 +13,7 @@ def hello_world_name(name):
 @app.route('/home_route')
 def hello():
     return 'This is home'
+
+@app.route('/post/<int:post_id>')
+def show_post(post_id):
+    return f'Post #{post_id}'
