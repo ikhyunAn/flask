@@ -1,5 +1,7 @@
 from flask import Flask
 from markupsafe import escape
+from flask import url_for
+
 app = Flask(__name__)
 
 @app.route("/")
@@ -17,3 +19,7 @@ def hello():
 @app.route('/post/<int:post_id>')
 def show_post(post_id):
     return f'Post #{post_id}'
+
+with app.test_request_context():
+    print(url_for('hello_world'))
+    print(url_for('show_post', post_id=99))
