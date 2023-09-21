@@ -1,6 +1,7 @@
 from flask import Flask
 from markupsafe import escape
 from flask import url_for
+from flask import request
 
 app = Flask(__name__)
 
@@ -23,3 +24,13 @@ def show_post(post_id):
 with app.test_request_context():
     print(url_for('hello_world'))
     print(url_for('show_post', post_id=99))
+    url_for('static', filename='style.css')
+
+# By default, route only answeres to GET requests
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        return do_the_login()
+    else:
+        return show_the_login_form()
+    
